@@ -14,3 +14,9 @@ variable "ssh_cidr" {
   description = "IPv4 CIDR allowed to connect over SSH."
   type        = string
 }
+
+variable "instance_count" {
+  description = "Number of EC2 instances to create."
+  type        = number
+  default     = 2
+}

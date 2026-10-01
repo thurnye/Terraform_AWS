@@ -15,3 +15,25 @@ variable "name" {
   type        = string
   default     = "My_EC2_Instance_Demo"
 }
+
+variable "instance_type_list" {
+  description = "List of EC2 instance types."
+  type        = list(string)
+  default     = ["t3.micro", "t3.small", "t3.medium"]
+}
+
+variable "instance_type_map" {
+  description = "Map of EC2 instance types."
+  type        = map(string)
+  default     = {
+    "dev"  = "t3.micro"
+    "qa" = "t3.small"
+    "prod"  = "t3.large"
+  }
+}
+
+variable "instance_count" {
+  description = "Number of EC2 instances to create."
+  type        = number
+  default     = 1
+}

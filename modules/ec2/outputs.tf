@@ -1,24 +1,16 @@
-# Terraform Outputs
-output "instance_name" {
-  description = "Name of the EC2 instance"
-  value       = aws_instance.my_ec2_instance.id
-}
 
-# EC2 instance state
-output "instance_state" {
-  description = "State of the EC2 instance"
-  value       = aws_instance.my_ec2_instance.instance_state
-}
+# output the entire module output as a list of objects
+output "instances" {
+  description = "EC2 instance details"
 
-# EC2 Instance Public IP Address
-output "instance_public_ip" {
-  description = "Public IP address of the EC2 instance"
-  value       = aws_instance.my_ec2_instance.public_ip
-}
-
-
-# EC2 Instance Public DNS Name
-output "instance_public_dns" {
-  description = "Public DNS name of the EC2 instance"
-  value       = aws_instance.my_ec2_instance.public_dns
+  value = [
+    for instance in aws_instance.my_ec2_instance : {
+      name           = instance.tags["Name"]
+      id             = instance.id
+      public_dns     = instance.public_dns
+      public_ip      = instance.public_ip
+      instance_type  = instance.instance_type
+      instance_state = instance.instance_state
+    }
+  ]
 }
