@@ -17,7 +17,7 @@ output "instance_public_ip" {
 }
 
 
-# EC@ Instance Public DNS Name
+# EC2 Instance Public DNS Name
 output "instance_public_dns" {
   description = "Public DNS name of the EC2 instance"
   value       = aws_instance.my_ec2_instance.public_dns

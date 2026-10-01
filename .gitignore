@@ -1,6 +1,14 @@
-.terraform/
-.terraform.lock.hcl
-terraform.tfstate
-terraform.tfstate.backup
-.terraform/*
-keys
+**/.terraform/*
+**/.terraform.lock.hcl
+*.tfstate
+*.tfstate.*
+*.tfplan
+crash.log
+crash.*.log
+*.pem
+*.key
+keys/
+.DS_Store
+# Commit provider lock files and non-secret environment tfvars.
+*.auto.tfvars
+*.auto.tfvars.json

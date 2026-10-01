@@ -1,11 +1,11 @@
 # Security Group for  SSH and TLS traffic
 resource "aws_security_group" "vpc-ssh" {
-  name        = "vpc-ssh"
+  name        = var.name
   description = "Allow TLS inbound traffic and all outbound traffic"
-  
+
 
   tags = {
-    Name = "vpc-ssh"
+    Name = var.name
   }
 }
 
@@ -23,7 +23,7 @@ resource "aws_vpc_security_group_ingress_rule" "vpc-tls_ipv4" {
 # InBound Rules for Security Group - SSH traffic
 resource "aws_vpc_security_group_ingress_rule" "vpc-ssh_ipv4" {
   security_group_id = aws_security_group.vpc-ssh.id
-  cidr_ipv4         = "0.0.0.0/0"
+  cidr_ipv4         = var.ssh_cidr
   from_port         = 22
   ip_protocol       = "tcp"
   to_port           = 22
