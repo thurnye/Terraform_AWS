@@ -62,3 +62,43 @@ output "for_output_map_advanced" {
 #   description = "Output latest generalized splat operator - return the list"
 #   value       = local.instances[*].public_dns
 # }
+
+
+# Output for the az
+output "output_az" {
+  value = {
+    for az, details in data.aws_ec2_instance_type_offerings.my_instance_types : az => details.instance_types
+  }
+}
+
+output "output_az_map" {
+
+  value = {
+    for az, details in data.aws_ec2_instance_type_offerings.my_instance_types : az => details.instance_types if length(details.instance_types) != 0
+  }
+}
+
+output "output_az_map_keys" {
+
+  value = keys({
+    for az, details in data.aws_ec2_instance_type_offerings.my_instance_types : az => details.instance_types if length(details.instance_types) != 0
+  })
+}
+
+#Output-1
+# Important Note: Once for_each is set, its attributes must be accessed on specific instances
+
+# output "output_az" {
+#   # value = data.aws_ec2_instance_type_offerings.my_instance_types.instance_types
+#   value = toset([
+#   for t in data.aws_ec2_instance_type_offerings.my_instance_types: t.instance_types
+#   ])
+# }
+
+#Output-2
+# Create a Map with Key as Availability Zone and value as Instance Type supported
+# output "output_az_map" {
+#   value = {
+#     for az, details in data.aws_ec2_instance_type_offerings.my_instance_types: az => details.instance_types
+#   }
+# }

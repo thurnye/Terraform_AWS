@@ -1,3 +1,8 @@
+variable "instance_ami" {
+  description = "EC2 instance ami"
+  type = string
+}
+
 variable "instance_type" {
   description = "EC2 instance type."
   type        = string
@@ -36,4 +41,10 @@ variable "instance_count" {
   description = "Number of EC2 instances to create."
   type        = number
   default     = 1
+}
+
+variable "availability_zone" {
+  description = "Availability zone for the EC2 instance."
+  type        = string
+  default     = "us-east-1a"
 }

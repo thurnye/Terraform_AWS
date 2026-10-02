@@ -11,6 +11,7 @@ output "instances" {
       public_ip      = instance.public_ip
       instance_type  = instance.instance_type
       instance_state = instance.instance_state
+      availability_zone = instance.availability_zone
     }
   ]
 }
