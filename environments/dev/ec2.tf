@@ -10,9 +10,14 @@ module "demo_instance" {
   name       = "Count-My_EC2_Instance_${each.key}"
   # count      = var.instance_count
   # for_each   = toset(data.aws_availability_zones.my_azs.names)
+  # availability_zone = each.key
   availability_zone = each.key
-  for_each = toset(keys({
-    for az, details in data.aws_ec2_instance_type_offerings.my_instance_types : az => details.instance_types if length(details.instance_types) != 0
-  }))
+  # for_each = toset(keys({
+  #   for az, details in data.aws_ec2_instance_type_offerings.my_instance_types : az => details.instance_types if length(details.instance_types) != 0
+  # }))
+  for_each = toset(slice([
+  for az in data.aws_availability_zones.my_azs.names : az
+  if length(data.aws_ec2_instance_type_offerings.my_instance_types[az].instance_types) != 0
+], 0, 2))
 }
 
