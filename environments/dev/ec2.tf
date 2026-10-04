@@ -1,3 +1,5 @@
+# using a custom module
+
 module "demo_instance" {
   instance_ami       = data.aws_ami.ubuntu.id
   source             = "../../modules/ec2"

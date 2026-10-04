@@ -13,3 +13,8 @@ create_database_subnet_group = true
 create_database_subnet_route_table = true
 create_database_internet_gateway_route_table = false
 create_database_nat_gateway_route_table = false
+
+
+# Bastion configuration
+bastion_instance_type     = "t3.micro"
+bastion_instance_key_pair = "class2026"
